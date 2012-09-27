@@ -1,7 +1,6 @@
 #include "Queue.h"
 #include "Node.h"
 #include <cassert>
-#include <iostream>
 
 Queue::Queue() {
   front=back=0;
@@ -9,6 +8,9 @@ Queue::Queue() {
 }
 
 Queue::~Queue() {
+  while (!isEmpty()) {
+    dequeue();
+  }
 }
 
 void Queue::enqueue(int value) {
@@ -24,7 +26,6 @@ void Queue::enqueue(int value) {
 
 int Queue::dequeue() {
   assert (!isEmpty());
-  
   Node* temp=front;
   int result=temp->getValue();
   front=temp->getNext();

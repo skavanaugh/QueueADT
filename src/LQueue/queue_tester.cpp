@@ -21,12 +21,12 @@ int main() {
   cout << queue->size() << endl;
   cout << queue->isEmpty() << endl;
 
-  cout << queue->dequeue() << endl;
-  cout << queue->dequeue() << endl;
-  cout << queue->dequeue() << endl;
-  cout << queue->dequeue() << endl;
-  cout << queue->dequeue() << endl;
-  cout << queue->dequeue() << endl;
+//  cout << queue->dequeue() << endl;
+//  cout << queue->dequeue() << endl;
+//  cout << queue->dequeue() << endl;
+//  cout << queue->dequeue() << endl;
+//  cout << queue->dequeue() << endl;
+//  cout << queue->dequeue() << endl;
 
   delete queue;
 
