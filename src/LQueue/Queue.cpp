@@ -1,8 +1,11 @@
 #include "Queue.h"
+#include "Node.h"
+#include <cassert>
 #include <iostream>
 
-Queue::Queue(int initialSize=10) {
-  theQueue=front=back=numElements=0;
+Queue::Queue() {
+  front=back=0;
+  numElements=0;
 }
 
 Queue::~Queue() {
@@ -21,6 +24,7 @@ void Queue::enqueue(int value) {
 
 int Queue::dequeue() {
   assert (!isEmpty());
+  
   Node* temp=front;
   int result=temp->getValue();
   front=temp->getNext();
@@ -36,4 +40,9 @@ int Queue::peek() {
 
 int Queue::size() {
   return numElements;
+}
+
+bool Queue::isEmpty() {
+  if (size()>0) return false;
+  else return true;
 }

@@ -1,5 +1,6 @@
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
+#include "Node.h"
 
 class Queue {
  private:
@@ -9,7 +10,8 @@ class Queue {
   int numElements;
 
  public:
-  Queue(int initialSize = 10);
+  Queue();
+  //Queue(int initialSize = 10);
   ~Queue(); //destructor
   void enqueue(int value);
   int dequeue();

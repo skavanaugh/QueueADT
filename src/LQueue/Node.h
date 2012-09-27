@@ -11,7 +11,7 @@ class Node {
     ~Node();
     int getValue();
     Node* getNext();
-    void setNext(const Node& n);
+    void setNext(Node &n);
 };
 #endif
 
