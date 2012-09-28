@@ -1,5 +1,9 @@
+BUILD = ../../build
 CPP = g++
 CPPFLAGS = -Wall -Wextra
+
+Arr: queue_tester.cpp Queue.o
+	$(CPP) $(CPPFLAGS) -o Arr queue_tester.cpp Queue.o
 
 Queue.o: Queue.h Queue.cpp 
 	$(CPP) $(CPPFLAGS) -c Queue.cpp
@@ -7,3 +11,4 @@ Queue.o: Queue.h Queue.cpp
 clean:
 	rm -f *.o
 	rm -f *~
+	rm -f $(BUILD)/main
