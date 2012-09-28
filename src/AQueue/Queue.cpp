@@ -1,13 +1,15 @@
 #include "Queue.h"
 #include <cassert>
+#include <algorithm>
 #include <iostream>
 
-private bool Queue::arrayIsFull() {
+
+bool Queue::arrayIsFull() {
   if (size()==capacity) return true;
   else return false;
 }
 
-private bool Queue::arrayTooBig() {
+bool Queue::arrayTooBig() {
   if ((capacity>initSize) && (numElements<=REDUCE_ARRAY_CHECK*capacity)) {
     return true;
   }  else return false;
@@ -17,6 +19,9 @@ Queue::Queue(int initialSize) {
   theQueue = new int[initialSize];
   front = back = numElements = 0;
   capacity = initSize = initialSize;
+  EXPAND_ARRAY=2.0;
+  REDUCE_ARRAY=0.5;
+  REDUCE_ARRAY_CHECK=0.25;
 }
 
 Queue::~Queue() {
@@ -31,7 +36,7 @@ void Queue::enqueue(int value) {
   // point old queue pointer to new stack
 
   if (arrayIsFull()) {
-    int* newQueue = new int[EXPAND_ARRAY*capacity];
+    int* newQueue = new int[(int)(EXPAND_ARRAY*capacity)];
     for (int i = 0; i < size(); i++) {
       newQueue[i]=theQueue[front];
       front++;
@@ -42,7 +47,7 @@ void Queue::enqueue(int value) {
     front=0;
     delete [] theQueue;
     theQueue=newQueue;
-    capacity=EXPAND_ARRAY*capacity;
+    capacity=(int)EXPAND_ARRAY*capacity;
     }
    
     back++;
@@ -56,8 +61,8 @@ int Queue::dequeue() {
   assert(!isEmpty());
   
   if (arrayTooBig()) {
-    int newCapacity=max(REDUCE_ARRAY*capacity,initSize);  
-    int* newQueue=new int[newCapacity)];
+    int newCapacity=std::max((int)(REDUCE_ARRAY*capacity),initSize);  
+    int* newQueue=new int[(int)newCapacity];
     for (int i=0; i<size(); i++) {
       newQueue[i]=theQueue[front];
       front++;
@@ -68,7 +73,7 @@ int Queue::dequeue() {
     front=0;
     delete [] theQueue;
     theQueue=newQueue;
-    capacity=REDUCE_ARRAY*capacity;
+    capacity=(int)newCapacity;
   }
   int result=theQueue[front];
   theQueue[front]=0;
@@ -88,7 +93,7 @@ int Queue::size() {
   return numElements;
 }
 
-bool isEmpty() {
+bool Queue::isEmpty() {
   if (size()>0) return false;
   else return true;
 }

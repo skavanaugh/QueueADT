@@ -8,12 +8,12 @@ class Queue {
   int back;
   int capacity;
   int numElements;
-  const int initSize;
-  const float EXPAND_ARRAY=2.0;
-  const float REDUCE_ARRAY=0.5;
-  const float REDUCE_ARRAY_CHECK=0.25;
+  int initSize;
+  float EXPAND_ARRAY;
+  float REDUCE_ARRAY;
+  float REDUCE_ARRAY_CHECK;
   bool arrayIsFull();
-  bool arrayTooLarge();
+  bool arrayTooBig();
 
  public:
   Queue(int initialSize = 10);
