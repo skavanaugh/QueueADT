@@ -20,6 +20,9 @@ $(BUILD)/LLtime: $(TTEST)/queue_tester.cpp $(LL)/Queue.o $(LL)/Node.o
 $(LL)/Queue.o: $(LL)/Queue.h $(LL)/Queue.cpp $(LL)/Node.o
 	cd $(LL); $(MAKE)
 
+$(LL)/Node.o: $(LL)/Node.cpp $(LL)/Node.h
+	cd $(LL); $(MAKE)
+
 $(BUILD)/Atime: $(TTEST)/queue_tester.cpp $(ARR)/Queue.o
 	$(CPP) $(CPPFLAGS) -o $(BUILD)/Atime $(TTEST)/queue_tester.cpp $(ARR)/Queue.o
 

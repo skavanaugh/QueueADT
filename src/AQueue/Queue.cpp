@@ -32,7 +32,8 @@ Queue::~Queue() {
 }
 
 void Queue::enqueue(int value) {
-
+  //assert(size()<=capacity);
+  //assert(size()>=0); // is this a worthless assertion?
   if (isEmpty()) {
     theQueue[back]=value;
     numElements++;
@@ -58,14 +59,10 @@ void Queue::enqueue(int value) {
       back=back%capacity;
     theQueue[back]=value;
     numElements++;
-
-    //std::cout << "i finished enqueuing " << value << " and now theQueue[front] is " << theQueue[front] << std::endl;
 }
 
 int Queue::dequeue() {
   assert(!isEmpty());
-  
-  //std::cout<<size()<<" "<<capacity<<" "<<peek()<<std::endl;
 
     if (arrayTooBig()) {
     int newCapacity=std::max((int)(REDUCE_ARRAY*capacity),initSize);  
@@ -89,17 +86,17 @@ int Queue::dequeue() {
     front=front%capacity;
   numElements--;
 
-  //std::cout<<size()<<" "<<capacity<<" "<<peek()<<std::endl;
   return result;  
 }
 
 int Queue::peek() {
   assert(!isEmpty());
-  //std::cout << "theQueue[front] " << theQueue[front] << std::endl;
   return theQueue[front];
 }
 
 int Queue::size() {
+  //assert(size()<=capacity); // do these assertions accomplish anything?
+  //assert(size()>=0);
   return numElements;
 }
 

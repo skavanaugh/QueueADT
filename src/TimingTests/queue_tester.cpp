@@ -30,6 +30,24 @@ int main() {
   seconds = (double) elapsed/CLOCKS_PER_SEC;
   cout << NUMLOOPS << " dequeues took " << seconds << " seconds." << endl;
 
+  start = clock();
+  for (int i = 1; i <= 0.5*NUMLOOPS; i++) {
+    q->enqueue(i);
+  }
+  for (int i = 1; i <= 0.4*NUMLOOPS; i++) {
+    q->dequeue();
+  }
+  for (int i = 1; i <= 0.5*NUMLOOPS; i++) {
+    q->enqueue(i);
+  }
+  for (int i = 1; i <= 0.4*NUMLOOPS; i++) {
+    q->dequeue();
+  }
+  end = clock();
+  elapsed = end - start;
+  seconds = (double) elapsed/CLOCKS_PER_SEC;
+  cout << NUMLOOPS << " enqueues and " << 0.8*NUMLOOPS << " dequeues took " << seconds << " seconds." << endl;
+  
   delete q;
 
   return 0;
